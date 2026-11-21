@@ -21,8 +21,9 @@ const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
 // A YouTube video address: a Short, a watch page, or a youtu.be link.
 // The video id is the 11-character token at the end of the address.
+// The gate also reads an m.youtube.com address, so this program does too.
 const VIDEO_URL =
-  /^https:\/\/(www\.youtube\.com\/(shorts\/|watch\?v=)|youtu\.be\/)([A-Za-z0-9_-]{11})([?&#].*)?$/;
+  /^https:\/\/((www\.|m\.)?youtube\.com\/(shorts\/|watch\?v=)|youtu\.be\/)([A-Za-z0-9_-]{11})([?&#].*)?$/;
 
 function loadVideoAddress(botDir: string): string | null {
   const raw = readFileSync(join(botDir, 'VIDEO.json'), 'utf8');
